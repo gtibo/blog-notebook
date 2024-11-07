@@ -1,0 +1,534 @@
+[gd_scene load_steps=20 format=3 uid="uid://bdyuitxcl43d0"]
+
+[ext_resource type="Script" path="res://top_down_character/duck.gd" id="1_pwvfl"]
+[ext_resource type="Texture2D" uid="uid://beswtrxqhk5w3" path="res://top_down_character/part/foot_sprite.png" id="2_kaykh"]
+[ext_resource type="Texture2D" uid="uid://bmjorxjju4psl" path="res://top_down_character/part/body_sprite.png" id="3_w85fd"]
+[ext_resource type="Texture2D" uid="uid://b3l7atmhbt6nf" path="res://top_down_character/part/beak_sprite.png" id="5_d5mmj"]
+[ext_resource type="Texture2D" uid="uid://cadrjwga5ycv8" path="res://top_down_character/part/eye_sprite.png" id="6_tjw5a"]
+[ext_resource type="Script" path="res://top_down_character/limb_line_2d.gd" id="6_uqdd7"]
+
+[sub_resource type="Animation" id="Animation_p61lm"]
+length = 0.001
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Rig/BodyAnchor:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [-100.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Rig/NeckPositionCopy/HeadHeightOffset:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [-160.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Rig/BodyAnchor/BodyPlaneOffset:position:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Rig/BodyAnchor/BodyPlaneOffset/NeckRoot/HeadPlaneOffset:position:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Rig/FootAnchorL/FootL:position:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Rig/FootAnchorR/FootR:position:y")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0.0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Rig/BodyAnchor/BodyPlaneOffset/NeckRoot/HeadPlaneOffset:position:y")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0.0]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Rig/FootAnchorL:position:y")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Rig/FootAnchorR:position:y")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_sk2wd"]
+resource_name = "idle"
+length = 2.0
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Rig/BodyAnchor:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2),
+"transitions": PackedFloat32Array(-2, -2, -2, -2, -2),
+"update": 0,
+"values": [-100.0, -120.0, -100.0, -120.0, -100.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Rig/NeckPositionCopy/HeadHeightOffset:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.2, 0.7, 1.2, 1.7, 2.2),
+"transitions": PackedFloat32Array(-2, -2, -2, -2, -2),
+"update": 0,
+"values": [-150.0, -170.0, -150.0, -170.0, -150.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Rig/BodyAnchor/BodyPlaneOffset:position:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(-2, -2, -2),
+"update": 0,
+"values": [-8.0, 8.0, -8.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Rig/BodyAnchor/BodyPlaneOffset/NeckRoot/HeadPlaneOffset:position:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.2, 1.2, 2.2),
+"transitions": PackedFloat32Array(-2, -2, -2),
+"update": 0,
+"values": [-8.0, 8.0, -8.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Rig/BodyAnchor/BodyPlaneOffset/NeckRoot/HeadPlaneOffset:position:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [16.0]
+}
+
+[sub_resource type="Animation" id="Animation_r28i8"]
+resource_name = "walk"
+length = 0.8
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Rig/BodyAnchor:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1, 0.3, 0.5, 0.7, 0.9),
+"transitions": PackedFloat32Array(-2, -2, -2, -2, -2),
+"update": 0,
+"values": [-100.0, -120.0, -100.0, -120.0, -100.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Rig/NeckPositionCopy/HeadHeightOffset:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.18, 0.38, 0.58, 0.78, 0.98),
+"transitions": PackedFloat32Array(-2, -2, -2, -2, -2),
+"update": 0,
+"values": [-150.0, -170.0, -150.0, -170.0, -150.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Rig/BodyAnchor/BodyPlaneOffset:position:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.1, 0.5, 0.9),
+"transitions": PackedFloat32Array(-2, -2, -2),
+"update": 0,
+"values": [-8.0, 8.0, -8.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Rig/BodyAnchor/BodyPlaneOffset/NeckRoot/HeadPlaneOffset:position:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.18, 0.58, 0.98),
+"transitions": PackedFloat32Array(-2, -2, -2),
+"update": 0,
+"values": [-8.0, 8.0, -8.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Rig/FootAnchorL/FootL:position:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8),
+"transitions": PackedFloat32Array(-2, -2, -2),
+"update": 0,
+"values": [32.0, -48.0, 32.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Rig/FootAnchorR/FootR:position:y")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8),
+"transitions": PackedFloat32Array(-2, -2, -2),
+"update": 0,
+"values": [-48.0, 32.0, -48.0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Rig/BodyAnchor/BodyPlaneOffset/NeckRoot/HeadPlaneOffset:position:y")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [32.0]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Rig/FootAnchorL:position:y")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.6, 0.8),
+"transitions": PackedFloat32Array(-2, -2, -2, -2),
+"update": 0,
+"values": [0.0, 0.0, -64.0, 0.0]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Rig/FootAnchorR:position:y")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.8),
+"transitions": PackedFloat32Array(-2, -2, -2, -2),
+"update": 0,
+"values": [0.0, -64.0, 0.0, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uy6sx"]
+_data = {
+"RESET": SubResource("Animation_p61lm"),
+"idle": SubResource("Animation_sk2wd"),
+"walk": SubResource("Animation_r28i8")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ubva0"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wet6j"]
+animation = &"walk"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_d68jn"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_6bd6u"]
+graph_offset = Vector2(-341, 45)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_wet6j")
+nodes/Animation/position = Vector2(-80, 140)
+nodes/MoveSpeed/node = SubResource("AnimationNodeTimeScale_d68jn")
+nodes/MoveSpeed/position = Vector2(140, 160)
+node_connections = [&"MoveSpeed", 0, &"Animation", &"output", 0, &"MoveSpeed"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8tcv6"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_twnlx"]
+xfade_time = 0.1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_evg78"]
+xfade_time = 0.2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_4c4w2"]
+states/End/position = Vector2(891, 111)
+states/Start/position = Vector2(389, 111)
+states/idle/node = SubResource("AnimationNodeAnimation_ubva0")
+states/idle/position = Vector2(532, 111)
+states/move/node = SubResource("AnimationNodeBlendTree_6bd6u")
+states/move/position = Vector2(716, 111)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_8tcv6"), "idle", "move", SubResource("AnimationNodeStateMachineTransition_twnlx"), "move", "idle", SubResource("AnimationNodeStateMachineTransition_evg78")]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_d754s"]
+graph_offset = Vector2(-249, 102)
+nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_4c4w2")
+nodes/StateMachine/position = Vector2(20, 120)
+nodes/output/position = Vector2(300, 120)
+node_connections = [&"output", 0, &"StateMachine"]
+
+[node name="Duck" type="Node2D"]
+script = ExtResource("1_pwvfl")
+
+[node name="Visual" type="Node2D" parent="."]
+
+[node name="FootSpriteL" type="Sprite2D" parent="Visual"]
+unique_name_in_owner = true
+position = Vector2(-24, 0)
+rotation = 0.5
+scale = Vector2(0.999858, 0.999856)
+skew = -0.000505209
+texture = ExtResource("2_kaykh")
+offset = Vector2(0, 8)
+
+[node name="FootSpriteR" type="Sprite2D" parent="Visual"]
+unique_name_in_owner = true
+position = Vector2(24, 0)
+rotation = -0.5
+scale = Vector2(0.999867, 0.999856)
+skew = -0.000495076
+texture = ExtResource("2_kaykh")
+offset = Vector2(0, 8)
+
+[node name="BodySprite" type="Sprite2D" parent="Visual"]
+unique_name_in_owner = true
+position = Vector2(2.81321, -47.3929)
+scale = Vector2(0.999858, 0.999858)
+texture = ExtResource("3_w85fd")
+offset = Vector2(0, -8)
+
+[node name="FaceSpriteGroup" type="Node2D" parent="Visual"]
+unique_name_in_owner = true
+z_index = 1
+
+[node name="BeakSprite" type="Sprite2D" parent="Visual/FaceSpriteGroup"]
+unique_name_in_owner = true
+position = Vector2(9.49971, -73.2197)
+scale = Vector2(0.999866, 0.999866)
+texture = ExtResource("5_d5mmj")
+offset = Vector2(0, 8)
+
+[node name="EyeSpriteL" type="Sprite2D" parent="Visual/FaceSpriteGroup"]
+unique_name_in_owner = true
+position = Vector2(-6.49897, -89.2196)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("6_tjw5a")
+
+[node name="EyeSpriteR" type="Sprite2D" parent="Visual/FaceSpriteGroup"]
+unique_name_in_owner = true
+position = Vector2(25.4984, -89.2196)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("6_tjw5a")
+
+[node name="Neck" type="Line2D" parent="Visual" node_paths=PackedStringArray("target_nodes")]
+top_level = true
+points = PackedVector2Array(4.64661, -33.2112, 12.1568, -92.5905)
+width = 56.0
+begin_cap_mode = 2
+end_cap_mode = 2
+round_precision = 12
+antialiased = true
+script = ExtResource("6_uqdd7")
+target_nodes = [NodePath("../../Rig/BodyAnchor/BodyPlaneOffset/NeckRoot"), NodePath("../../Rig/NeckPositionCopy/HeadHeightOffset/HeadCenter")]
+
+[node name="LegL" type="Line2D" parent="Visual" node_paths=PackedStringArray("target_nodes")]
+top_level = true
+z_index = -1
+points = PackedVector2Array(-24, -52.4112, -24, 0)
+width = 28.0
+default_color = Color(1, 0.580346, 0.262821, 1)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+round_precision = 16
+script = ExtResource("6_uqdd7")
+target_nodes = [NodePath("../../Rig/BodyAnchor/HipL"), NodePath("../../Rig/FootAnchorL/FootL")]
+
+[node name="LegR" type="Line2D" parent="Visual" node_paths=PackedStringArray("target_nodes")]
+top_level = true
+z_index = -1
+points = PackedVector2Array(24, -52.4112, 24, 0)
+width = 28.0
+default_color = Color(1, 0.580346, 0.262821, 1)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+round_precision = 16
+script = ExtResource("6_uqdd7")
+target_nodes = [NodePath("../../Rig/BodyAnchor/HipR"), NodePath("../../Rig/FootAnchorR/FootR")]
+
+[node name="Rig" type="Node2D" parent="."]
+scale = Vector2(1, 0.4)
+
+[node name="FootAnchorL" type="Node2D" parent="Rig"]
+unique_name_in_owner = true
+
+[node name="FootL" type="RemoteTransform2D" parent="Rig/FootAnchorL"]
+position = Vector2(-24, 0)
+rotation = 0.261799
+remote_path = NodePath("../../../Visual/FootSpriteL")
+update_rotation = false
+update_scale = false
+
+[node name="FootAnchorR" type="Node2D" parent="Rig"]
+unique_name_in_owner = true
+
+[node name="FootR" type="RemoteTransform2D" parent="Rig/FootAnchorR"]
+position = Vector2(24, 0)
+rotation = -0.261799
+remote_path = NodePath("../../../Visual/FootSpriteR")
+update_rotation = false
+update_scale = false
+
+[node name="BodyAnchor" type="Node2D" parent="Rig"]
+unique_name_in_owner = true
+position = Vector2(0, -100)
+
+[node name="HipL" type="Marker2D" parent="Rig/BodyAnchor"]
+position = Vector2(-24, -16)
+
+[node name="HipR" type="Marker2D" parent="Rig/BodyAnchor"]
+position = Vector2(24, -16)
+
+[node name="BodyPlaneOffset" type="RemoteTransform2D" parent="Rig/BodyAnchor"]
+remote_path = NodePath("../../../Visual/BodySprite")
+update_rotation = false
+update_scale = false
+
+[node name="NeckRoot" type="Node2D" parent="Rig/BodyAnchor/BodyPlaneOffset"]
+position = Vector2(0, 32)
+
+[node name="HeadPlaneOffset" type="RemoteTransform2D" parent="Rig/BodyAnchor/BodyPlaneOffset/NeckRoot"]
+remote_path = NodePath("../../../../NeckPositionCopy")
+update_rotation = false
+update_scale = false
+
+[node name="NeckPositionCopy" type="Node2D" parent="Rig"]
+position = Vector2(9.49971, -70.4821)
+scale = Vector2(0.999918, 0.999996)
+
+[node name="HeadHeightOffset" type="Node2D" parent="Rig/NeckPositionCopy"]
+unique_name_in_owner = true
+position = Vector2(0, -160)
+
+[node name="BeakAnchor" type="Node2D" parent="Rig/NeckPositionCopy/HeadHeightOffset"]
+unique_name_in_owner = true
+position = Vector2(0, 20)
+scale = Vector2(1, 0.999999)
+
+[node name="Beak" type="RemoteTransform2D" parent="Rig/NeckPositionCopy/HeadHeightOffset/BeakAnchor"]
+position = Vector2(0, 24)
+remote_path = NodePath("../../../../../Visual/FaceSpriteGroup/BeakSprite")
+update_rotation = false
+update_scale = false
+
+[node name="EyesAnchor" type="Node2D" parent="Rig/NeckPositionCopy/HeadHeightOffset"]
+unique_name_in_owner = true
+position = Vector2(0, -20)
+
+[node name="EyeR" type="RemoteTransform2D" parent="Rig/NeckPositionCopy/HeadHeightOffset/EyesAnchor"]
+position = Vector2(16, 24)
+remote_path = NodePath("../../../../../Visual/FaceSpriteGroup/EyeSpriteR")
+update_rotation = false
+update_scale = false
+
+[node name="EyeL" type="RemoteTransform2D" parent="Rig/NeckPositionCopy/HeadHeightOffset/EyesAnchor"]
+position = Vector2(-16, 24)
+remote_path = NodePath("../../../../../Visual/FaceSpriteGroup/EyeSpriteL")
+update_rotation = false
+update_scale = false
+
+[node name="HeadCenter" type="Node2D" parent="Rig/NeckPositionCopy/HeadHeightOffset"]
+position = Vector2(0, -12)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_uy6sx")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+unique_name_in_owner = true
+root_node = NodePath("%AnimationTree/..")
+tree_root = SubResource("AnimationNodeBlendTree_d754s")
+anim_player = NodePath("../AnimationPlayer")
+parameters/StateMachine/move/MoveSpeed/scale = 1.0

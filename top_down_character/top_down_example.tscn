@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://c05lr5o8kx2he"]
+
+[ext_resource type="PackedScene" uid="uid://bu2ou4qdok4hu" path="res://top_down_character/top_down_character.tscn" id="1_ps7hp"]
+
+[node name="TopDownExample" type="Node2D"]
+y_sort_enabled = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0.972549, 0.901961, 1)
+
+[node name="TopDownCharacter" parent="." instance=ExtResource("1_ps7hp")]
+
+[node name="Camera2D" type="Camera2D" parent="."]

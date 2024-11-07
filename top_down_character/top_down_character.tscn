@@ -1,0 +1,87 @@
+[gd_scene load_steps=13 format=3 uid="uid://bu2ou4qdok4hu"]
+
+[ext_resource type="Script" path="res://top_down_character/top_down_character.gd" id="1_07j5p"]
+[ext_resource type="PackedScene" uid="uid://bdyuitxcl43d0" path="res://top_down_character/duck.tscn" id="1_8hh4m"]
+[ext_resource type="Shader" path="res://top_down_character/outline.gdshader" id="1_niqdy"]
+[ext_resource type="Texture2D" uid="uid://dc42i1uyrlq1m" path="res://top_down_character/shadow.png" id="3_pw860"]
+
+[sub_resource type="Curve" id="Curve_m4f4h"]
+_data = [Vector2(0.8, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_fwwqq"]
+curve = SubResource("Curve_m4f4h")
+
+[sub_resource type="Curve" id="Curve_66q1m"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_1cpo1"]
+curve = SubResource("Curve_66q1m")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_clkqk"]
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 50.0
+gravity = Vector3(0, -10, 0)
+scale_curve = SubResource("CurveTexture_1cpo1")
+alpha_curve = SubResource("CurveTexture_fwwqq")
+
+[sub_resource type="Gradient" id="Gradient_5k5uo"]
+offsets = PackedFloat32Array(0.972896, 0.997147, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.114123, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_oiy1o"]
+gradient = SubResource("Gradient_5k5uo")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rpcqf"]
+shader = ExtResource("1_niqdy")
+shader_parameter/viewport_scale = Vector2(1, 1)
+shader_parameter/line_color = Color(0, 0, 0, 1)
+shader_parameter/line_thickness = 8.0
+
+[node name="TopDownCharacter" type="Node2D"]
+script = ExtResource("1_07j5p")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+modulate = Color(1, 0.882353, 0.690196, 1)
+position = Vector2(0, 68)
+scale = Vector2(0.875, 0.5)
+texture = ExtResource("3_pw860")
+
+[node name="DustParticles" type="GPUParticles2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, 80)
+process_material = SubResource("ParticleProcessMaterial_clkqk")
+texture = SubResource("GradientTexture2D_oiy1o")
+lifetime = 0.8
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+material = SubResource("ShaderMaterial_rpcqf")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -128.0
+offset_right = 128.0
+offset_bottom = 128.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+disable_3d = true
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(256, 256)
+render_target_update_mode = 4
+
+[node name="Duck" parent="SubViewportContainer/SubViewport" instance=ExtResource("1_8hh4m")]
+unique_name_in_owner = true
+position = Vector2(128, 180)
+direction = 0.0

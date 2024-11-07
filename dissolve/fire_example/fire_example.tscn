@@ -1,0 +1,249 @@
+[gd_scene load_steps=42 format=3 uid="uid://dr4epj82etjl0"]
+
+[ext_resource type="Shader" path="res://dissolve/fire_example/base_smoke.gdshader" id="1_wicvf"]
+[ext_resource type="Shader" path="res://dissolve/fire_example/fire_spark.gdshader" id="2_5harg"]
+
+[sub_resource type="Environment" id="Environment_jbs0t"]
+background_mode = 1
+background_color = Color(0.04, 0.04, 0.04, 1)
+tonemap_mode = 3
+glow_enabled = true
+glow_bloom = 0.1
+
+[sub_resource type="Gradient" id="Gradient_d8yya"]
+offsets = PackedFloat32Array(0, 0.5, 1)
+colors = PackedColorArray(1, 0.3325, 0.11, 1, 1, 0.6885, 0.11, 1, 1, 0.89571, 0.755974, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ftijx"]
+gradient = SubResource("Gradient_d8yya")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_6hsak"]
+noise_type = 2
+fractal_octaves = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_geap8"]
+seamless = true
+noise = SubResource("FastNoiseLite_6hsak")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xjlhv"]
+render_priority = 0
+shader = ExtResource("1_wicvf")
+shader_parameter/noise_scale = 0.25
+shader_parameter/edge = 0.1
+shader_parameter/smoothness = 0.5
+shader_parameter/energy = 1.5
+shader_parameter/noise_sampler = SubResource("NoiseTexture2D_geap8")
+shader_parameter/gradient_sampler = SubResource("GradientTexture1D_ftijx")
+
+[sub_resource type="Curve" id="Curve_jf2a6"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.1, 0.8), 0.0, 0.0, 0, 0, Vector2(0.3, 0.3), 0.0, 0.0, 0, 0, Vector2(0.4, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="CurveTexture" id="CurveTexture_pfw72"]
+curve = SubResource("Curve_jf2a6")
+
+[sub_resource type="Curve" id="Curve_m1fnt"]
+_data = [Vector2(0, 0.5), 0.0, 0.0, 0, 0, Vector2(0.3, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.8), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_ce3xl"]
+curve = SubResource("Curve_m1fnt")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_momic"]
+direction = Vector3(0, 1, 0)
+initial_velocity_min = 0.25
+initial_velocity_max = 1.0
+gravity = Vector3(0, 5, 0)
+scale_min = 0.8
+scale_max = 1.2
+scale_curve = SubResource("CurveTexture_ce3xl")
+alpha_curve = SubResource("CurveTexture_pfw72")
+anim_speed_min = 0.1
+anim_speed_max = 0.2
+anim_offset_max = 1.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_s7q5g"]
+
+[sub_resource type="Gradient" id="Gradient_ilmek"]
+offsets = PackedFloat32Array(0, 0.5, 1)
+colors = PackedColorArray(1, 0.3325, 0.11, 1, 1, 0.6885, 0.11, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_1aefn"]
+gradient = SubResource("Gradient_ilmek")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_5wvxm"]
+noise_type = 2
+fractal_octaves = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_2nv77"]
+seamless = true
+noise = SubResource("FastNoiseLite_5wvxm")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mrtof"]
+render_priority = 0
+shader = ExtResource("1_wicvf")
+shader_parameter/noise_scale = 0.35
+shader_parameter/edge = 0.4
+shader_parameter/smoothness = 0.1
+shader_parameter/energy = 1.5
+shader_parameter/noise_sampler = SubResource("NoiseTexture2D_2nv77")
+shader_parameter/gradient_sampler = SubResource("GradientTexture1D_1aefn")
+
+[sub_resource type="Curve" id="Curve_of6t4"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.1, 0.8), 0.0, 0.0, 0, 0, Vector2(0.3, 0.3), 0.0, 0.0, 0, 0, Vector2(0.4, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="CurveTexture" id="CurveTexture_fyrf2"]
+curve = SubResource("Curve_of6t4")
+
+[sub_resource type="Curve" id="Curve_5syqx"]
+_data = [Vector2(0, 0.5), 0.0, 0.0, 0, 0, Vector2(0.3, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.8), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_gfmx2"]
+curve = SubResource("Curve_5syqx")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_4g0xy"]
+direction = Vector3(0, 1, 0)
+initial_velocity_min = 0.25
+initial_velocity_max = 1.0
+gravity = Vector3(0, 5, 0)
+scale_min = 0.8
+scale_max = 1.2
+scale_curve = SubResource("CurveTexture_gfmx2")
+alpha_curve = SubResource("CurveTexture_fyrf2")
+anim_speed_min = 0.1
+anim_speed_max = 0.2
+anim_offset_max = 1.0
+
+[sub_resource type="Gradient" id="Gradient_r1mg4"]
+colors = PackedColorArray(0.2, 0.2, 0.2, 1, 0.6, 0.6, 0.6, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_vy4e4"]
+gradient = SubResource("Gradient_r1mg4")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_tqlon"]
+noise_type = 2
+fractal_octaves = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_01k35"]
+seamless = true
+noise = SubResource("FastNoiseLite_tqlon")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_44v0o"]
+render_priority = 0
+shader = ExtResource("1_wicvf")
+shader_parameter/noise_scale = 0.18
+shader_parameter/edge = 0.1
+shader_parameter/smoothness = 0.8
+shader_parameter/energy = 1.0
+shader_parameter/noise_sampler = SubResource("NoiseTexture2D_01k35")
+shader_parameter/gradient_sampler = SubResource("GradientTexture1D_vy4e4")
+
+[sub_resource type="Curve" id="Curve_7wgyv"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.2, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_1p2ki"]
+curve = SubResource("Curve_7wgyv")
+
+[sub_resource type="Curve" id="Curve_cl1ax"]
+_data = [Vector2(0, 0.5), 0.0, 0.0, 0, 0, Vector2(0.3, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.8), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_p1wj3"]
+curve = SubResource("Curve_cl1ax")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_v25cd"]
+direction = Vector3(0, 1, 0)
+initial_velocity_min = 0.25
+initial_velocity_max = 1.0
+gravity = Vector3(0, 5, 0)
+scale_min = 0.8
+scale_max = 1.2
+scale_curve = SubResource("CurveTexture_p1wj3")
+alpha_curve = SubResource("CurveTexture_1p2ki")
+anim_speed_min = 0.1
+anim_speed_max = 0.2
+anim_offset_max = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w4xvq"]
+render_priority = 0
+shader = ExtResource("2_5harg")
+shader_parameter/albedo = Color(1, 0.233333, 0, 1)
+shader_parameter/energy = 2.5
+
+[sub_resource type="Curve" id="Curve_xaikh"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.2, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_f0w3b"]
+curve = SubResource("Curve_xaikh")
+
+[sub_resource type="Curve" id="Curve_kcf62"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.3, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.8), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_lfr4v"]
+curve = SubResource("Curve_kcf62")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2kjul"]
+direction = Vector3(0, 1, 0)
+spread = 180.0
+initial_velocity_min = 1.0
+initial_velocity_max = 2.0
+gravity = Vector3(0, 4, 0)
+scale_min = 0.25
+scale_curve = SubResource("CurveTexture_lfr4v")
+alpha_curve = SubResource("CurveTexture_f0w3b")
+anim_speed_min = 0.1
+anim_speed_max = 0.2
+anim_offset_max = 1.0
+turbulence_enabled = true
+turbulence_noise_scale = 0.25
+
+[sub_resource type="QuadMesh" id="QuadMesh_sddbd"]
+size = Vector2(0.015, 0.04)
+
+[node name="FireExample" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_jbs0t")
+
+[node name="Node3D" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+fov = 45.0
+
+[node name="Fire" type="GPUParticles3D" parent="."]
+sorting_offset = 10.0
+material_override = SubResource("ShaderMaterial_xjlhv")
+amount = 12
+process_material = SubResource("ParticleProcessMaterial_momic")
+draw_pass_1 = SubResource("QuadMesh_s7q5g")
+
+[node name="FireHard" type="GPUParticles3D" parent="."]
+sorting_offset = 10.0
+material_override = SubResource("ShaderMaterial_mrtof")
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_4g0xy")
+draw_pass_1 = SubResource("QuadMesh_s7q5g")
+
+[node name="Smoke" type="GPUParticles3D" parent="."]
+material_override = SubResource("ShaderMaterial_44v0o")
+amount = 16
+lifetime = 1.5
+process_material = SubResource("ParticleProcessMaterial_v25cd")
+draw_pass_1 = SubResource("QuadMesh_s7q5g")
+
+[node name="Sparks" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.107374, 0)
+sorting_offset = 10.0
+material_override = SubResource("ShaderMaterial_w4xvq")
+amount = 32
+lifetime = 1.4
+transform_align = 3
+process_material = SubResource("ParticleProcessMaterial_2kjul")
+draw_pass_1 = SubResource("QuadMesh_sddbd")

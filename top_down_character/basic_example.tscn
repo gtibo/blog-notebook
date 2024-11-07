@@ -1,0 +1,43 @@
+[gd_scene load_steps=3 format=3 uid="uid://bimnptbv1sww2"]
+
+[ext_resource type="Script" path="res://top_down_character/basic_example.gd" id="1_6c1yp"]
+[ext_resource type="Texture2D" uid="uid://byo3ndlq6vr2a" path="res://icon.svg" id="1_ddkap"]
+
+[node name="Example" type="Node2D"]
+script = ExtResource("1_6c1yp")
+
+[node name="Visual" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Visual"]
+texture = ExtResource("1_ddkap")
+
+[node name="PointSprite" type="Sprite2D" parent="Visual"]
+position = Vector2(0, 57.6)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_ddkap")
+
+[node name="Rig" type="Node2D" parent="."]
+scale = Vector2(1, 0.45)
+
+[node name="PointAnchor" type="Node2D" parent="Rig"]
+unique_name_in_owner = true
+
+[node name="PlaneResult" type="RemoteTransform2D" parent="Rig/PointAnchor"]
+position = Vector2(0, 128)
+remote_path = NodePath("../../../Visual/PointSprite")
+update_rotation = false
+update_scale = false
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.96, 0.96, 0.96, 1)
