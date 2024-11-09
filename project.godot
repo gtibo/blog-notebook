@@ -13,7 +13,7 @@ config_version=5
 config/name="Blog Notebook"
 run/main_scene="res://top_down_character/top_down_example.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
-run/max_fps=60
+run/max_fps=120
 config/icon="res://icon.svg"
 
 [display]

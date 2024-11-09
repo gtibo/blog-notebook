@@ -1,11 +1,11 @@
 [gd_scene load_steps=42 format=3 uid="uid://dr4epj82etjl0"]
 
-[ext_resource type="Shader" path="res://dissolve/fire_example/base_smoke.gdshader" id="1_wicvf"]
+[ext_resource type="Shader" path="res://dissolve/particles_dissolve.gdshader" id="1_wicvf"]
 [ext_resource type="Shader" path="res://dissolve/fire_example/fire_spark.gdshader" id="2_5harg"]
 
 [sub_resource type="Environment" id="Environment_jbs0t"]
 background_mode = 1
-background_color = Color(0.04, 0.04, 0.04, 1)
+background_color = Color(0.2, 0.2, 0.2, 1)
 tonemap_mode = 3
 glow_enabled = true
 glow_bloom = 0.1
