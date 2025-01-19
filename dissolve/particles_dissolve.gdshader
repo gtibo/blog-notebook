@@ -35,7 +35,7 @@ void vertex() {
 }
 
 void fragment() {
-	float noise = clamp(texture(noise_sampler, UV * noise_scale + custom.z).x - custom.g, 0.0, 1.0);
+	float noise = clamp(texture(noise_sampler, UV * noise_scale + custom.z).x - custom.y, 0.0, 1.0);
 	float dist = smoothstep(0.5, 1.0, distance(UV, vec2(0.5)) * 2.0);
 	float mask = clamp(noise - dist, 0.0, 1.0);
 	vec3 color = texture(gradient_sampler, vec2(mask, 0.0)).rgb;

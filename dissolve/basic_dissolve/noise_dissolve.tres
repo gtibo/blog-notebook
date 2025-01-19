@@ -1,0 +1,12 @@
+[gd_resource type="Shader" format=3 uid="uid://bcjdfgix3grl6"]
+
+[resource]
+code = "shader_type canvas_item;
+
+uniform sampler2D noise_sampler : filter_linear_mipmap, repeat_enable;
+uniform float dissolve : hint_range(0.0, 1.0, 0.1) = 0.0;
+
+void fragment() {
+	float mask = texture(noise_sampler, UV).x;
+	COLOR.rgb = vec3(mask - 1.0 + dissolve * 2.0);
+}"

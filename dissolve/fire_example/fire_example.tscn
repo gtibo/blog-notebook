@@ -10,12 +10,11 @@ tonemap_mode = 3
 glow_enabled = true
 glow_bloom = 0.1
 
-[sub_resource type="Gradient" id="Gradient_d8yya"]
-offsets = PackedFloat32Array(0, 0.5, 1)
-colors = PackedColorArray(1, 0.3325, 0.11, 1, 1, 0.6885, 0.11, 1, 1, 0.89571, 0.755974, 1)
+[sub_resource type="Gradient" id="Gradient_lby53"]
+colors = PackedColorArray(1, 0.3325, 0.11, 1, 1, 0.6885, 0.11, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_ftijx"]
-gradient = SubResource("Gradient_d8yya")
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_72cmy"]
+gradient = SubResource("Gradient_lby53")
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_6hsak"]
 noise_type = 2
@@ -28,12 +27,12 @@ noise = SubResource("FastNoiseLite_6hsak")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xjlhv"]
 render_priority = 0
 shader = ExtResource("1_wicvf")
-shader_parameter/noise_scale = 0.25
-shader_parameter/edge = 0.1
-shader_parameter/smoothness = 0.5
+shader_parameter/noise_scale = 0.45
+shader_parameter/edge = 0.03
+shader_parameter/smoothness = 0.35
 shader_parameter/energy = 1.5
 shader_parameter/noise_sampler = SubResource("NoiseTexture2D_geap8")
-shader_parameter/gradient_sampler = SubResource("GradientTexture1D_ftijx")
+shader_parameter/gradient_sampler = SubResource("GradientTexture1D_72cmy")
 
 [sub_resource type="Curve" id="Curve_jf2a6"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.1, 0.8), 0.0, 0.0, 0, 0, Vector2(0.3, 0.3), 0.0, 0.0, 0, 0, Vector2(0.4, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -85,7 +84,7 @@ shader = ExtResource("1_wicvf")
 shader_parameter/noise_scale = 0.35
 shader_parameter/edge = 0.4
 shader_parameter/smoothness = 0.1
-shader_parameter/energy = 1.5
+shader_parameter/energy = 2.5
 shader_parameter/noise_sampler = SubResource("NoiseTexture2D_2nv77")
 shader_parameter/gradient_sampler = SubResource("GradientTexture1D_1aefn")
 
@@ -218,14 +217,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
 fov = 45.0
 
 [node name="Fire" type="GPUParticles3D" parent="."]
-sorting_offset = 10.0
 material_override = SubResource("ShaderMaterial_xjlhv")
 amount = 12
 process_material = SubResource("ParticleProcessMaterial_momic")
 draw_pass_1 = SubResource("QuadMesh_s7q5g")
 
 [node name="FireHard" type="GPUParticles3D" parent="."]
-sorting_offset = 10.0
+sorting_offset = 1.0
 material_override = SubResource("ShaderMaterial_mrtof")
 amount = 16
 process_material = SubResource("ParticleProcessMaterial_4g0xy")

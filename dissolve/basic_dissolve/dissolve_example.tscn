@@ -1,0 +1,117 @@
+[gd_scene load_steps=10 format=3 uid="uid://j0afc1tnpn41"]
+
+[ext_resource type="Shader" uid="uid://cgxd4pw1bi6xm" path="res://dissolve/basic_dissolve/basic_dissolve.tres" id="1_asv81"]
+[ext_resource type="Shader" path="res://dissolve/basic_dissolve/basic_smooth_dissolve.gdshader" id="1_fiumg"]
+[ext_resource type="Script" path="res://dissolve/basic_dissolve/dissolve_example.gd" id="1_xtamw"]
+[ext_resource type="Shader" uid="uid://bcjdfgix3grl6" path="res://dissolve/basic_dissolve/noise_dissolve.tres" id="2_ryf4s"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_xwvr5"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_0u13e"]
+width = 256
+height = 256
+noise = SubResource("FastNoiseLite_xwvr5")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3na5b"]
+shader = ExtResource("2_ryf4s")
+shader_parameter/dissolve = 0.0
+shader_parameter/noise_sampler = SubResource("NoiseTexture2D_0u13e")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_03g7t"]
+shader = ExtResource("1_asv81")
+shader_parameter/dissolve = 0.0
+shader_parameter/noise_sampler = SubResource("NoiseTexture2D_0u13e")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ue2of"]
+shader = ExtResource("1_fiumg")
+shader_parameter/dissolve = 0.0
+shader_parameter/smoothness = 0.1
+shader_parameter/noise_sampler = SubResource("NoiseTexture2D_0u13e")
+
+[node name="DissolveExample" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xtamw")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.9, 0.9, 0.9, 1)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -384.0
+offset_top = -181.0
+offset_right = 384.0
+offset_bottom = 181.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 64
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Noise" type="ColorRect" parent="HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_3na5b")
+custom_minimum_size = Vector2(320, 320)
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
+text = "Offset Mask"
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="BasicDissolve" type="ColorRect" parent="HBoxContainer/VBoxContainer3"]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_03g7t")
+custom_minimum_size = Vector2(320, 320)
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
+text = "Step Mask"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="SmoothDissolve" type="ColorRect" parent="HBoxContainer/VBoxContainer2"]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_ue2of")
+custom_minimum_size = Vector2(320, 320)
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
+text = "Smoothstep Mask"

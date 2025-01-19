@@ -23,7 +23,7 @@ window/size/viewport_height=720
 
 [editor]
 
-movie_writer/movie_file="/home/tibo/Vidéos/duck_walk.avi"
+movie_writer/movie_file="/home/tibo/Vidéos/godot_movie_maker_output.avi"
 
 [input]
 
@@ -58,7 +58,3 @@ sprint={
 , Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":7,"pressure":0.0,"pressed":true,"script":null)
 ]
 }
-
-[rendering]
-
-anti_aliasing/quality/msaa_2d=2

@@ -1,0 +1,46 @@
+[gd_scene load_steps=8 format=3 uid="uid://cncs4msos51gs"]
+
+[ext_resource type="Shader" path="res://dissolve/erase_object/erase.gdshader" id="1_d4cs5"]
+[ext_resource type="Script" path="res://dissolve/erase_object/erase_object.gd" id="1_kpw3l"]
+
+[sub_resource type="Environment" id="Environment_rpdcp"]
+background_mode = 1
+background_color = Color(0.2, 0.2, 0.2, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.389287, 0.389287, 0.389287, 1)
+tonemap_mode = 3
+glow_enabled = true
+glow_bloom = 0.1
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_c8lxa"]
+noise_type = 2
+fractal_octaves = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_f3d75"]
+noise = SubResource("FastNoiseLite_c8lxa")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_k7psa"]
+render_priority = 0
+shader = ExtResource("1_d4cs5")
+shader_parameter/dissolve = 0.0
+shader_parameter/noise_sampler = SubResource("NoiseTexture2D_f3d75")
+
+[sub_resource type="SphereMesh" id="SphereMesh_qcf7l"]
+
+[node name="EraseObject" type="Node3D"]
+script = ExtResource("1_kpw3l")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_rpdcp")
+
+[node name="SphereMesh" type="MeshInstance3D" parent="."]
+unique_name_in_owner = true
+material_override = SubResource("ShaderMaterial_k7psa")
+mesh = SubResource("SphereMesh_qcf7l")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+fov = 35.0
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.707107, -0.612372, 0.353553, 0, 0.5, 0.866025, -0.707107, -0.612372, 0.353553, 0, 0, 0)
